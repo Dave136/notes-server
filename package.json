@@ -1,0 +1,31 @@
+{
+	"name": "notes-server",
+	"version": "0.0.1",
+	"main": "main.ts",
+	"repository": "https://github.com/Dave136/notes-server",
+	"author": "David Arenas <davejs136@gmail.com>",
+	"license": "MIT",
+	"scripts": {
+		"dev": "NODE_ENV=development ts-node-dev --respawn --transpile-only ./src/main.ts",
+		"fmt": "eslint . --ext .js,.ts --fix && prettier --write \"**/*.{json,md,yml,ts,js}\"",
+			"prettier": "prettier -c \"**/*.{md,json,yml,sh}\"",
+			"start": "node ./dist/main.js"
+	},
+	"dependencies": {
+		"fastify": "3.29.0",
+		"pg": "8.7.3",
+		"typeorm": "0.3.6"
+	},
+	"devDependencies": {
+		"@types/node": "17.0.30",
+		"dotenv": "16.0.0",
+		"env-cmd": "10.1.0",
+		"eslint": "8.14.0",
+		"eslint-config-prettier": "8.5.0",
+		"eslint-plugin-prettier": "4.0.0",
+		"prettier": "2.6.2",
+		"ts-node": "10.7.0",
+		"ts-node-dev": "1.1.8",
+		"typescript": "4.6.4"
+	}
+}
