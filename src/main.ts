@@ -1,16 +1,18 @@
-import fastify from 'fastify';
+import 'reflect-metadata';
 
-const server = fastify({ logger: true });
-
-server.get('/', async (request, reply) => {
-  return { message: 'Notes API' };
-});
+import buildServer from './server';
+import env from './utils/envConfig';
 
 const start = async () => {
-  try {
-    await server.listen(3000);
-    server.log.debug('Server running at http://localhost:3000');
-  } catch (err) {}
+  env();
+  const server = await buildServer();
+  const port = +process.env.PORT;
+
+  if (!port) {
+    throw new Error('"PORT" variable is not defined');
+  }
+
+  server.listen(port, '127.0.0.1');
 };
 
 start();

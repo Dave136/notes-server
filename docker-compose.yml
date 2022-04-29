@@ -2,13 +2,13 @@ version: '3'
 
 services:
   database:
-    build: ./docker/database
+    image: 'postgres:14.1-alpine'
     ports:
       - '5432:5432'
     volumes:
-      - database:/var/lib/postgresql/data
+      - notes_server:/var/lib/postgresql/data
     env_file:
       - .env
 
 volumes:
-  database:
+  notes_server:
