@@ -1,0 +1,4 @@
+[
+  "type LoginResponse {\n  token: String!\n  refreshToken: String!\n}\n\ntype Mutation {\n  register(input: RegisterInput!): LoginResponse!\n}\n\ninput RegisterInput {\n  name: String!\n  username: String!\n  email: String!\n  password: String!\n}",
+  "scalar Date\n\ntype User {\n  id: ID!\n  name: String\n  username: String\n  email: String\n  password: String\n  refreshToken: String\n  createdAt: Date\n  updatedAt: Date\n}\n\nextend type Query {\n  users: [User]\n  user: User\n}"
+]

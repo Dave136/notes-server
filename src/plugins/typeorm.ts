@@ -27,12 +27,13 @@ const typeormPlugin = async (
       username: POSTGRES_USER,
       password: POSTGRES_PASSWORD,
       database: POSTGRES_DB,
+      synchronize: isDevelopment(),
       entities: [User],
       logging: isDevelopment(),
     });
 
     await appDataSource.initialize();
-    console.log('Database is connected 🚧');
+    console.log('Database is connected 🚀');
 
     fastify.decorate('typeorm', appDataSource);
 

@@ -12,7 +12,16 @@ const start = async () => {
     throw new Error('"PORT" variable is not defined');
   }
 
-  server.listen(port, '127.0.0.1');
+  server.listen(
+    {
+      port,
+      host: '0.0.0.0',
+    },
+    (err, address) => {
+      if (err) throw new Error(err.message);
+      server.log.info(`server listening on ${address}`);
+    },
+  );
 };
 
 start();

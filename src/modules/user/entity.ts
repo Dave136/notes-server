@@ -5,6 +5,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
+import bcrypt from 'bcrypt';
 
 @Entity({ name: 'users' })
 export default class User {
@@ -18,6 +19,12 @@ export default class User {
     unique: true,
   })
   email: string;
+
+  @Column({
+    type: 'varchar',
+    length: 10,
+  })
+  name: string;
 
   @Column({
     type: 'varchar',
@@ -50,14 +57,15 @@ export default class User {
   public updatedAt: Date;
 
   public async validatePassword(current: string): Promise<boolean> {
-    // todo: refactor using bcrypt
-    return current === this.password;
+    return bcrypt.compare(current, this.password);
   }
 
   public toPresentationLayer(): NotesServer.User {
     return {
       id: this.id,
       email: this.email,
+      name: this.name,
+      refreshToken: this.refreshToken,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
     };
